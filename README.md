@@ -1,46 +1,59 @@
-# 📘 Monitoring & Logging with Prometheus + Grafana  
-### 🔍 Dashboards for Application Health Metrics
+📊 Monitoring & Logging with Prometheus + Grafana
+
+🔍 Dashboards for Application Health Metrics
+
 
 ---
 
-## 🧩 Overview
+🧩 Overview
 
 This guide explains step-by-step how to:
-- **Run Prometheus** (a monitoring system that collects metrics)
-- **Run Grafana** (a visualization tool for dashboards)
-- **Connect them to your application** (any technology)
-- **View real-time metrics** such as CPU usage, memory, request rate, errors, etc.
 
-This setup helps developers and testers track **app performance, stability, and resource consumption** during development or production.
+Run Prometheus (a monitoring system that collects metrics)
+
+Run Grafana (a visualization tool for dashboards)
+
+Connect them to your application (any technology)
+
+View real-time metrics such as CPU usage, memory, request rate, errors, etc.
+
+
+This setup helps developers and testers track app performance, stability, and resource consumption during development or production.
+
 
 ---
 
-## 🚀 1. Prerequisites
+🚀 1. Prerequisites
 
 Before starting, ensure you have:
 
-| Requirement | Description |
-|--------------|-------------|
-| 🐳 **Docker + Docker Compose** | To run Prometheus and Grafana easily |
-| 💻 **Your Application** | Any web app (Java, Node.js, Python, Go, etc.) that can expose a metrics endpoint |
-| 🌐 **Internet Connection** | Needed to pull images for Prometheus and Grafana |
+Requirement	Description
+
+🐳 Docker + Docker Compose	To run Prometheus and Grafana easily
+💻 Your Application	Any web app (Java, Node.js, Python, Go, etc.) that can expose a metrics endpoint
+🌐 Internet Connection	Needed to pull images for Prometheus and Grafana
+
+
 
 ---
 
-## 🏗️ 2. Folder Structure
+🏗️ 2. Folder Structure
 
 Create a directory for your monitoring setup:
 
-monitoring/ │ ├── docker-compose.yml        # Defines the services (Prometheus + Grafana) └── prometheus.yml            # Configuration file for Prometheus
+monitoring/
+│
+├── docker-compose.yml        # Defines the services (Prometheus + Grafana)
+└── prometheus.yml            # Configuration file for Prometheus
+
 
 ---
 
-## ⚙️ 3. Configure Prometheus
+⚙️ 3. Configure Prometheus
 
-Create a file called **`prometheus.yml`**  
-This file tells Prometheus **what to monitor**, **how often**, and **where** to get metrics.
+Create a file called prometheus.yml
+This file tells Prometheus what to monitor, how often, and where to get metrics.
 
-```yaml
 global:
   scrape_interval: 5s    # Prometheus collects (scrapes) data every 5 seconds
 
@@ -139,11 +152,11 @@ Prometheus starts at 👉 http://localhost:9090
 Grafana starts at 👉 http://localhost:3000
 
 
-To check containers:
+Check containers:
 
 docker ps
 
-To stop them:
+Stop them:
 
 docker-compose down
 
@@ -156,11 +169,12 @@ Once Grafana is running:
 
 1. Open http://localhost:3000
 
+
+
 Default login credentials:
+
 Username: admin
 Password: admin
-
-
 
 2. Add a Data Source:
 
@@ -180,9 +194,9 @@ Click Save & Test
 
 Go to Dashboards → New → Import
 
-You can import a ready-made dashboard (e.g., ID 4701 for general metrics)
+Import ready-made dashboard (e.g., ID 4701 for general metrics)
 
-Or build your own with queries.
+Or build your own using queries.
 
 
 
@@ -192,9 +206,7 @@ Or build your own with queries.
 
 🔎 7. Test Prometheus Connection
 
-Go to:
-
-http://localhost:9090/targets
+Go to: http://localhost:9090/targets
 
 You should see your application listed with a green "UP" status.
 If it shows "DOWN", check:
@@ -203,7 +215,7 @@ The metrics endpoint path
 
 The target host/port
 
-The app is running
+That the app is running
 
 
 
@@ -253,29 +265,29 @@ docker-compose down -v --remove-orphans
 Below is the logical architecture showing how the system works:
 
 +-----------------------------+
-          |       Your Application      |
-          |  (any tech exposing /metrics)|
-          +--------------+--------------+
-                         |
-                         |  (HTTP scrape)
-                         v
-               +-------------------+
-               |    Prometheus     |
-               | Collects metrics  |
-               | from your app     |
-               +--------+----------+
-                        |
-                        | (Data source)
-                        v
-               +-------------------+
-               |     Grafana       |
-               |  Visualizes data  |
-               |  on dashboards    |
-               +-------------------+
+|       Your Application      |
+|  (any tech exposing /metrics)|
++--------------+--------------+
+               |
+               |  (HTTP scrape)
+               v
+       +-------------------+
+       |    Prometheus     |
+       | Collects metrics  |
+       | from your app     |
+       +--------+----------+
+                |
+                | (Data source)
+                v
+       +-------------------+
+       |     Grafana       |
+       |  Visualizes data  |
+       |  on dashboards    |
+       +-------------------+
 
 🔁 Data Flow Summary:
 
-1. Your Application exposes metrics in plain text format at /metrics or similar endpoint.
+1. Your Application exposes metrics in plain text format at /metrics.
 
 
 2. Prometheus regularly scrapes these metrics and stores them in its internal time-series database.
