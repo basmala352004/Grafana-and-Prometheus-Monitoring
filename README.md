@@ -1,6 +1,6 @@
 # 📘 Monitoring & Logging with Prometheus + Grafana
 
-> 🚀 Real-time dashboards for application health, performance, and resource usage — in just minutes!
+> 🚀 Real-time dashboards for application health, performance, and resource usage, in just minutes!
 
 ---
 
@@ -167,5 +167,6 @@ docker-compose down -v --remove-orphans
 - Prometheus scrapes metrics every 5s
 - Grafana shows real-time dashboards
 - You gain full visibility into app health & performance
+
 
 
