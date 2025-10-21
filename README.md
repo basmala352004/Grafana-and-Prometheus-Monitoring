@@ -1,7 +1,3 @@
-Absolutely, Basmala! Here's a visually engaging and beginner-friendly README file based on your Prometheus + Grafana monitoring guide. It’s designed to be clear, professional, and memorable — perfect for GitHub or team documentation.
-
----
-
 # 📘 Monitoring & Logging with Prometheus + Grafana
 
 > 🚀 Real-time dashboards for application health, performance, and resource usage — in just minutes!
@@ -172,6 +168,4 @@ docker-compose down -v --remove-orphans
 - Grafana shows real-time dashboards
 - You gain full visibility into app health & performance
 
----
 
-Let me know if you'd like a matching image or diagram to go with this README — I’d be happy to help!
