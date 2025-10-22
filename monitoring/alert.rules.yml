@@ -1,0 +1,20 @@
+groups:
+  - name: request_alerts
+    rules:
+      - alert: HighRequestVolume
+        expr: http_requests_total{method="GET", route="/", statusCode="200"} > 100
+        for: 10s
+        labels:
+          severity: warning
+        annotations:
+          summary: "High number of requests"
+          description: "More than 100 requests have been received."
+
+      - alert: HighRequestRate
+        expr: rate(http_requests_total{method="GET", route="/", statusCode="200"}[1m]) > 10
+        for: 15s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Request rate too high"
+          description: "More than 10 requests per second over the last minute."
